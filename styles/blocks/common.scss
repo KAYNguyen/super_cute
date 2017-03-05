@@ -153,10 +153,10 @@ a:hover {
     .value-current {
       min-width: 40px;
       padding: 2px 10px;
-      border-radius: 10px;
+      border-radius: 20px;
       color: #fff;
       top: -35px;
-      right: 0;
+      right: -15px;
       background-color: #87c52e;
       &:before {
         content: "";
@@ -170,5 +170,33 @@ a:hover {
         border-right: 6px solid transparent;
       }
     }
+  }
+}
+.block-milestone {
+  border-radius: 5px;
+  margin-bottom: 15px;
+  @include box-shadow(0 0 5px 0 rgba(0,0,0,0.5));
+  .inner {
+    padding: 25px 15px;
+    overflow: hidden;
+  }
+  .name {
+    float: left;
+    >img {
+      @include size(56px);
+      border-radius: 50%;
+      vertical-align: middle;
+    }
+    h3 {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0;
+      padding-left: 13px;
+      font-size: 15px;
+    }
+  }
+  .button-link {
+    float: right;
+    margin-top: 10px;
   }
 }

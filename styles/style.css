@@ -127,10 +127,10 @@ a:hover {
     .progress .progress-bar .value-current {
       min-width: 40px;
       padding: 2px 10px;
-      border-radius: 10px;
+      border-radius: 20px;
       color: #fff;
       top: -35px;
-      right: 0;
+      right: -15px;
       background-color: #87c52e; }
       .progress .progress-bar .value-current:before {
         content: "";
@@ -143,6 +143,32 @@ a:hover {
         border-top: 6px solid #87c52e;
         border-left: 6px solid transparent;
         border-right: 6px solid transparent; }
+
+.block-milestone {
+  border-radius: 5px;
+  margin-bottom: 15px;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.5); }
+  .block-milestone .inner {
+    padding: 25px 15px;
+    overflow: hidden; }
+  .block-milestone .name {
+    float: left; }
+    .block-milestone .name > img {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      vertical-align: middle; }
+    .block-milestone .name h3 {
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0;
+      padding-left: 13px;
+      font-size: 15px; }
+  .block-milestone .button-link {
+    float: right;
+    margin-top: 10px; }
 
 .a .b {
   color: #fff; }
