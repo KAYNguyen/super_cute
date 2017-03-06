@@ -38,6 +38,7 @@
       padding: 8px 17px;
       min-width: 220px;
       transition: opacity .3s linear;
+      font-family: "Roboto-Medium";
       &:hover {
         opacity: .7;
       }
@@ -108,13 +109,14 @@
       background-color: #33abe5;
       min-width: 94px;
       padding: 4px 6px;
+      font-family: "Roboto-Medium";
       border-radius: 5px;
     }
   }
   .chart-item {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 10px;
+    margin-right: 6px;
     &.no {
       color: #fff;
       font-size: 14px;
