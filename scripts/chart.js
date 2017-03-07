@@ -17,7 +17,7 @@
 ;(function($, window, undefined) {
   'use strict';
 
-  var pluginName = 'chart', click = true;
+  var pluginName = 'chart', click = true, w = $(window).width();
 
   function Plugin(element, options) {
     this.element = $(element);
@@ -70,18 +70,25 @@
       	widthOfWrapper: $('['+that.options.eleChartList+']').width(),
       	widthOfItem: $('['+that.options.eleChartList+']').width() / that.options.items,
       	widthChartList: $('['+that.options.eleChartList+']').find('[data-item]').length * $('['+that.options.eleChartList+']').width() / that.options.items,
-      	indexCurrent: 0
+      	indexCurrent: 0,
+      	itemsMobile: that.options.itemsMobile,
+      	wMobile: that.options.wMobile,
+      	numberSlide: that.options.items
       };
 
-      if(that.vars.itemsOfChart < that.vars.items) {
-      	that.vars.items = that.vars.itemsOfChart;
-      	that.vars.widthOfItem = that.vars.widthOfWrapper / that.vars.items;
+      if(w < that.vars.wMobile + 1) {
+    		that.vars.numberSlide = that.vars.itemsMobile;
+    	}
 
-      	that.vars.widthChartList = (that.vars.widthOfItem * that.vars.itemsOfChart);
+      if(that.vars.itemsOfChart < that.vars.numberSlide) {
+      	that.vars.numberSlide = that.vars.itemsOfChart;
       }
 
+      that.vars.widthOfItem = that.vars.widthOfWrapper / that.vars.numberSlide;
+      that.vars.widthChartList = (that.vars.widthOfItem * that.vars.itemsOfChart);
+
       // arrows
-    	creatArrows(that.vars.eleArrows, that.vars.items, that.vars.itemsOfChart);
+    	creatArrows(that.vars.eleArrows, that.vars.numberSlide, that.vars.itemsOfChart);
 
       // init width of list chart
       that.vars.eleWrapper.width(that.vars.widthOfWrapper);
@@ -91,7 +98,7 @@
       that.vars.eleItemChart.width(that.vars.widthOfItem);
 
       // init slide
-      stateSlide(that.vars.indexCurrent, that.vars.items, that.vars.itemsOfChart, that.vars.eleItemChart);
+      stateSlide(that.vars.indexCurrent, that.vars.numberSlide, that.vars.itemsOfChart, that.vars.eleItemChart);
 
       // slide item
       that.vars.eleArrowButton.on('click', function(){
@@ -128,10 +135,10 @@
 
     	if(action === 'next') {
     		if(next !== -1) {
-					if(that.vars.indexCurrent + that.vars.items <= that.vars.itemsOfChart - that.vars.items ) {
-						step = that.vars.items;
+					if(that.vars.indexCurrent + that.vars.numberSlide <= that.vars.itemsOfChart - that.vars.numberSlide ) {
+						step = that.vars.numberSlide;
 					}else{
-						step = that.vars.itemsOfChart - that.vars.items - that.vars.indexCurrent;
+						step = that.vars.itemsOfChart - that.vars.numberSlide - that.vars.indexCurrent;
 					}
 
   				eleChartList.stop().animate({
@@ -142,13 +149,13 @@
 
   				that.vars.indexCurrent = that.vars.indexCurrent + step;
 
-  				stateSlide(that.vars.indexCurrent, that.vars.items, that.vars.itemsOfChart, that.vars.eleItemChart);
+  				stateSlide(that.vars.indexCurrent, that.vars.numberSlide, that.vars.itemsOfChart, that.vars.eleItemChart);
     		}
     		click = true;
     	} else {
     		if(prev !== -1) {
-    			if(that.vars.indexCurrent - that.vars.items >= 0 ) {
-						step = that.vars.items;
+    			if(that.vars.indexCurrent - that.vars.numberSlide >= 0 ) {
+						step = that.vars.numberSlide;
 					}else{
 						step = that.vars.indexCurrent;
 					}
@@ -165,17 +172,23 @@
 
   				that.vars.indexCurrent = that.vars.indexCurrent - step;
 
-  				stateSlide(that.vars.indexCurrent, that.vars.items, that.vars.itemsOfChart, that.vars.eleItemChart);
+  				stateSlide(that.vars.indexCurrent, that.vars.numberSlide, that.vars.itemsOfChart, that.vars.eleItemChart);
     		}
     	}
     },
     resize: function(){
     	var that = this;
+    	that.vars.numberSlide = that.vars.items;
+    	w = $(window).width();
+
+    	if(w < that.vars.wMobile + 1) {
+    		that.vars.numberSlide = that.vars.itemsMobile;
+    	}
 
     	that.vars.eleWrapper.attr('style', '');
 
     	that.vars.widthOfWrapper = that.vars.eleWrapper.width();
-    	that.vars.widthOfItem = that.vars.widthOfWrapper / that.vars.items;
+    	that.vars.widthOfItem = that.vars.widthOfWrapper / that.vars.numberSlide;
     	that.vars.widthChartList = that.vars.widthOfItem * that.vars.itemsOfChart;
 
     	// resize width of list chart
@@ -208,7 +221,9 @@
 
   $.fn[pluginName].defaults = {
     eleChartList: 'data-chart-list',
-    items: 7
+    items: 7,
+    itemsMobile: 5, 
+    wMobile: 767
   };
 
   $(function() {
