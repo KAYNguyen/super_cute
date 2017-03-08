@@ -73,6 +73,13 @@
 			display: inline-block;
 		}
 	}
+	.copy-link {
+		margin-top: 20px;
+		.button-link {
+			border: 0;
+
+		}
+	}
 }
 @media only screen and (max-width: 992px) {
 	.share-box {
