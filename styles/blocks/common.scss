@@ -37,6 +37,7 @@ a:hover {
   }
   img {
     margin-left: 5px;
+    max-width: 18px;
   }
   > span {
     margin-right: 2px;
@@ -170,6 +171,9 @@ a:hover {
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
+        img {
+          max-width: 17px;
+        }
         @media only screen and (max-width: 991px) {
           img {
             max-width: 10px;
@@ -342,6 +346,9 @@ a:hover {
         text-align: center;
         background-color: #71b200;
         border-radius: 5px;
+        img {
+          max-width: 25px;
+        }
       }
     }
     .name {

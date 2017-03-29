@@ -33,8 +33,8 @@
       border-radius: 50%;
       text-align: center;
       position: absolute;
-      right: 2px;
-      top: 0;
+      right: 1px;
+      top: -2px;
     }
   }
   .notif-show {
@@ -128,6 +128,7 @@
         }
         > img {
           margin-right: 5px;
+          max-width: 27px;
         }
         > span {
           font-size: 12px;

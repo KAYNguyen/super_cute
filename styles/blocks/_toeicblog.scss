@@ -78,11 +78,13 @@
 		}
 		.icon-like {
 			padding: 0 14px 0 21px;
-			background: url(../images/icon_like.png) no-repeat 0 2px;
+			background: url(../images/icon_like.png) no-repeat;
+			background-size: 15px 14px;
 		}
 		.icon-comment {
 			padding: 0 14px 0 22px;
-			background: url(../images/icon_comment.png) no-repeat 0 2px;
+			background: url(../images/icon_comment.png) no-repeat;
+			background-size: 15px 14px;
 		}
 	}
 	.more-blogs {
